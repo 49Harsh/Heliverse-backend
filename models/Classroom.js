@@ -7,11 +7,11 @@ const classroomSchema = new mongoose.Schema({
   },
   teacher: {
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Teacher' 
+    ref: 'teacher' 
   },
-  students: [{
+  student: [{
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Student' 
+    ref: 'student' 
   }],
   startTime: { 
     type: String, 

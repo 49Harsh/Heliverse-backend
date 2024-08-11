@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const teacherSchema = new mongoose.Schema({
+  name:{
+    type:String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
@@ -8,9 +12,7 @@ const teacherSchema = new mongoose.Schema({
   password: { 
     type: String, 
     required: true },
-  classroom: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Classroom' }
+
 });
 
 module.exports = mongoose.model('Teacher', teacherSchema);
