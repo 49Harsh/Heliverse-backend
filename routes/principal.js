@@ -76,4 +76,48 @@ router.get('/show-student', async(req,res) =>{
   }
 })
 
+// for showing all teacher 
+router.get('/show-teacher', async(req,res) =>{
+  try{
+    const teachers = await Teacher.find();
+    res.json(teachers);
+  }
+  catch(error){
+    res.status(500).json({message: 'Server error'});
+  }
+})
+
+// Delete route for Student
+router.delete('/student/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedStudent = await Student.findByIdAndDelete(id);
+
+    if (!deletedStudent) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    res.json({ message: 'Student successfully deleted', deletedStudent });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+// Delete route for Teacher
+router.delete('/teacher/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedTeacher = await Teacher.findByIdAndDelete(id);
+
+    if (!deletedTeacher) {
+      return res.status(404).json({ message: 'Teacher not found' });
+    }
+
+    res.json({ message: 'Teacher successfully deleted', deletedTeacher });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+
 module.exports = router;
