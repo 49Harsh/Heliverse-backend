@@ -46,14 +46,14 @@ router.post('/create-student', async (req, res) => {
   const { email, password, classroomId } = req.body;
   
   try {
-    const classroom = await Classroom.findById(classroomId);
-    if (!classroom) return res.status(404).json({ message: 'Classroom not found' });
+    // const classroom = await Classroom.findById(classroomId);
+    // if (!classroom) return res.status(404).json({ message: 'Classroom not found' });
 
-    const student = new Student({ email, password, classroom: classroomId });
+    const student = new Student({ email, password });
     await student.save();
 
-    classroom.students.push(student._id);
-    await classroom.save();
+    // classroom.students.push(student._id);
+    // await classroom.save();
 
     res.json(student);
   } catch (error) {
