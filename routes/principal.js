@@ -43,7 +43,7 @@ router.post('/create-teacher', async (req, res) => {
 
 // for creating student
 router.post('/create-student', async (req, res) => {
-  const { email, password, classroomId } = req.body;
+  const { email, password} = req.body;
   
   try {
     // const classroom = await Classroom.findById(classroomId);

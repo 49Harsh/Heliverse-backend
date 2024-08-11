@@ -1,29 +1,35 @@
 const express = require('express');
 const router = express.Router();
-const Teacher = require('../models/teacher');
-const Classroom = require('../models/Classroom');
-const timetable = require('../models/Timetable')
+const TimeTable = require('../models/Timetable')
 
-router.post('/create-timetable', async (req, res) => {
+
+// Create time table entry
+router.post('/create-timetable',async (req, res) => {
+  try {
     const { day, subject, startTime, endTime } = req.body;
-
-    try {
-      const newEntry = new timetable({ day, subject, startTime, endTime });
-      await newEntry.save();
-      res.status(201).json(newEntry);
-    } catch (error) {
-      res.status(500).json({ message: 'Error creating timetable entry', error });
-    }
+    const newTimeTable = new TimeTable({
+      day,
+      subject,
+      startTime,
+      endTime,
+    });
+    await newTimeTable.save();
+    res.status(201).json(newTimeTable);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
-router.get('/show-timetable', async (req, res) => {
+// Get teacher's time table
+router.get('/my-timetable', async (req, res) => {
   try {
-    const timetable = await timetable.find();
-    res.status(200).json(timetable);
+    const timeTable = await TimeTable.find();
+    res.json(timeTable);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching timetable', error });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
 
 module.exports = router;
+
