@@ -9,7 +9,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost/classroom_website')
+mongoose.connect('mongodb+srv://user1:user@cluster0.kumlq.mongodb.net/')
 .then(() =>{
     console.log('Connected to MongoDB');
 })
@@ -19,9 +19,9 @@ mongoose.connect('mongodb://localhost/classroom_website')
 
 app.use(bodyParser.json());
 
-// app.use('/', (req, res) =>{
-//     res.send('Hello World!')
-// })
+app.use('/', (req, res) =>{
+    res.send('Hello World!')
+})
 
 // Routes
 const authRoutes = require('./routes/auth');
