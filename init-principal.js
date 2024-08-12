@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Principal = require('./models/principal');
 
-mongoose.connect('mongodb://localhost/classroom_website')
+mongoose.connect('mongodb+srv://user1:user@cluster0.kumlq.mongodb.net/classroom_website')
 .then(() => console.log('Connected to MongoDB...'))
 .catch(err => console.error('Could not connect to MongoDB...'))
 

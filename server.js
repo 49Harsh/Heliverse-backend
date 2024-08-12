@@ -19,9 +19,9 @@ mongoose.connect('mongodb+srv://user1:user@cluster0.kumlq.mongodb.net/')
 
 app.use(bodyParser.json());
 
-app.use('/', (req, res) =>{
-    res.send('Hello World!')
-})
+// app.use('/', (req, res) =>{
+//     res.send('Hello World!')
+// })
 
 // Routes
 const authRoutes = require('./routes/auth');
